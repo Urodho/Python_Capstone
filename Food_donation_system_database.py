@@ -1,4 +1,8 @@
 import sqlite3
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 connection = sqlite3.connect("food_donation_system.db")
 
 cursor = connection.cursor()
@@ -39,10 +43,14 @@ password TEXT
 """)
 
 # INSERT THE DEFAULT ADMIN USER
+admin_user = os.getenv("ADMIN_USER", "admin")
+admin_pass = os.getenv("ADMIN_PASSWORD")
+
 cursor.execute("""
 INSERT OR IGNORE INTO users(username,
 password)
-VALUES('admin', '1234')
+VALUES(?, ?)",
+(admin_user, admin_pass)
 """)
 
 connection.commit()
