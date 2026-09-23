@@ -8,11 +8,12 @@ def add_donation():
 
     food_name = input ("Enter food name")
     quantity = int(input("Enter quantity"))
-    expiry_date = input("Enter expiry date YYYY-MM-DD):")
+    expiry_date = input("Enter expiry date (YYYY-MM-DD):")
     donor_id = int(input("Enter donor ID:"))
 
     cursor.execute(
-        "INSERT INTO donations(food_name,quantity,expiry_date,donor_id)"
+        "INSERT INTO donations(food_name,quantity, expiry_date, donor_id) VALUES(?, ?, ?, ?)",
+        (food_name, quantity, expiry_date, donor_id)
     )
 
     connection.commit()

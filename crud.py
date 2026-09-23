@@ -13,8 +13,8 @@ def view_donors():
     if len(donors) == 0:
         print("No donors found.")
     else:
-        for donors in donors:
-         print(donor)
+        for donor in donors:
+         print(donors)
 
     connection.close()
 
@@ -24,7 +24,7 @@ def search_donor():
     connection = sqlite3.connect("food_donation system.db")
     cursor = connection.cursor
 
-    donor_id = input("Enter Donor ID")
+    donor_id = int(input("Enter Donor ID"))
 
     cursor.execute("SELECT * FROM donors WHERE id=?", (donor_id,))
 

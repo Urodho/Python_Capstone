@@ -46,12 +46,10 @@ password TEXT
 admin_user = os.getenv("ADMIN_USER", "admin")
 admin_pass = os.getenv("ADMIN_PASSWORD")
 
-cursor.execute("""
-INSERT OR IGNORE INTO users(username,
-password)
-VALUES(?, ?)",
-(admin_user, admin_pass)
-""")
+cursor.execute(
+    "INSERT OR IGNORE INTO users(username, password)VALUES(?,?)",
+    (admin_user, admin_pass)
+)
 
 connection.commit()
 connection.close()
